@@ -1,23 +1,31 @@
 import { useState } from 'react';
 
 function ProductForm() {
-  const [productName, setProductName] = useState('');
-  const [productImage, setProductImage] = useState('');
-  const [productPrice, setProductPrice] = useState('');
-  const [productDescription, setProductDescription] = useState('');
+  // const [productName, setProductName] = useState('');
+  // const [productImage, setProductImage] = useState('');
+  // const [productPrice, setProductPrice] = useState('');
+  // const [productDescription, setProductDescription] = useState('');
+  const [name, setProductName] = useState('');
+  const [image, setProductImage] = useState('');
+  const [price, setProductPrice] = useState('');
+  const [description, setProductDescription] = useState('');
 
   const handleSubmit = (e) => {
     // alert('submit data');
     // เราจะส่งข้อมูลไปที่ Server ตรงนี้ แต่เราจะต้องเรียนต่อในบทเรียนข้างหน้า
     e.preventDefault();
     const data = {
-      productName,
-      productImage,
-      productPrice,
-      productDescription
+      name,
+      price: Number(price),
+      image,
+      description
     };
 
-    alert(JSON.stringify(data));
+    alert(JSON.stringify(data, null, 2));
+    setProductName('');
+    setProductImage('');
+    setProductPrice('');
+    setProductDescription('');
   };
 
   return (
@@ -31,7 +39,7 @@ function ProductForm() {
             name="name"
             type="text"
             placeholder="Enter name here"
-            value={productName}
+            value={name}
             onChange={(e) => setProductName(e.target.value)}
           />
         </label>
@@ -44,7 +52,7 @@ function ProductForm() {
             name="image"
             type="text"
             placeholder="Enter image url here"
-            value={productImage}
+            value={image}
             onChange={(e) => setProductImage(e.target.value)}
           />
         </label>
@@ -57,7 +65,7 @@ function ProductForm() {
             name="price"
             type="number"
             placeholder="Enter price here"
-            value={productPrice}
+            value={price}
             onChange={(e) => setProductPrice(e.target.value)}
           />
         </label>
@@ -70,7 +78,7 @@ function ProductForm() {
             name="description"
             type="text"
             placeholder="Enter description here"
-            value={productDescription}
+            value={description}
             onChange={(e) => setProductDescription(e.target.value)}
             rows={4}
             cols={30}
